@@ -1,0 +1,20 @@
+web:
+  build: .
+  ports:
+    - "80:80"
+  volumes:
+    - /home/bruno/Workspace/elastic:/var/www/html
+  links:
+    - db
+    - elasticsearch
+db:
+  image: mysql:5.6
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+elasticsearch:
+  image: elasticsearch:latest
+  ports:
+    - "9200:9200"
+    - "9300:9300"
